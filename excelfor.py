@@ -1,14 +1,20 @@
-# -*-coding:utf-8-*-
+# -*-coding:gbk-*-
+
+#本程序用于获取第一个sheet项目并在第二三四个sheet中寻找对应的值并写入新表。
+
 
 import xlrd
 import xlwt
 import sys
 
+print("请将需要处理的excel放入本程序相同目录下。")
+raw_input("按任意键开始任务：")
+print("开始创建新表：")
 #新建excel
 newexcel = xlwt.Workbook()
 tablenew = newexcel.add_sheet("sheet",cell_overwrite_ok=True)
 #读取所有原excel sheet
-excel = xlrd.open_workbook('/tmp/excel.xls')
+excel = xlrd.open_workbook('*.xls')
 table0 = excel.sheets()[0]
 table1 = excel.sheets()[1]
 table2 = excel.sheets()[2]
@@ -31,7 +37,7 @@ for y in range(0,ncol0):
 		tablenew.write(x,y,value0)
 		s = s + 1
 		#print value0
-	newexcel.save('/tmp/newxls.xls')
+	newexcel.save('newxls.xls')
 print("新表创建完成！")
 print("开始写入库存数据！")	
 #获取原excel第一个sheet所有编码并与第二，三，四个sheet编码对比，如果编码相同则获取该sheet需要的值。没有相同的则为0
@@ -60,11 +66,11 @@ for i in range(2,nrow0):
 	tablenew.write(i,7,number1)
 	tablenew.write(i,8,number2)
 	tablenew.write(i,9,number3)
-	newexcel.save('/tmp/newxls.xls')
+	newexcel.save('newxls.xls')
 	#print("已写入："+str(100*(i+10)/nrow0)+"%")
 	sys.stdout.write("已写入："+str(100*(i+10)/nrow0)+"%"+"\r")
 	#print("正在写入："+"产品编码："+code0+"天合库存："+str(number1)+"曜居库存："+str(number2)+"残次库存："+str(number3))
-print("获取数据结束！")
+print("获取数据结束！请打开newxls.xls查看获取结果！")
 		
 
 		
