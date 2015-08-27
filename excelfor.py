@@ -1,35 +1,35 @@
 # -*-coding:gbk-*-
 
-#æœ¬ç¨‹åºç”¨äºè·å–ç¬¬ä¸€ä¸ªsheeté¡¹ç›®å¹¶åœ¨ç¬¬äºŒä¸‰å››ä¸ªsheetä¸­å¯»æ‰¾å¯¹åº”çš„å€¼å¹¶å†™å…¥æ–°è¡¨ã€‚
+#±¾³ÌĞòÓÃÓÚ»ñÈ¡µÚÒ»¸ösheetÏîÄ¿²¢ÔÚµÚ¶şÈıËÄ¸ösheetÖĞÑ°ÕÒ¶ÔÓ¦µÄÖµ²¢Ğ´ÈëĞÂ±í¡£
 
 
 import xlrd
 import xlwt
 import sys
 
-print("è¯·å°†éœ€è¦å¤„ç†çš„excelæ”¾å…¥æœ¬ç¨‹åºç›¸åŒç›®å½•ä¸‹ã€‚")
-raw_input("æŒ‰ä»»æ„é”®å¼€å§‹ä»»åŠ¡ï¼š")
-print("å¼€å§‹åˆ›å»ºæ–°è¡¨ï¼š")
-#æ–°å»ºexcel
+print("Çë½«ĞèÒª´¦ÀíµÄexcel·ÅÈë±¾³ÌĞòÏàÍ¬Ä¿Â¼ÏÂ¡£")
+name = raw_input("ÇëÊäÈëÒª´¦ÀíµÄexcelÎÄ¼şÃû(°üÀ¨À©Õ¹Ãûxls)£¬°´ÈÎÒâ¼ü¿ªÊ¼ÈÎÎñ£º")
+print("¿ªÊ¼´´½¨ĞÂ±í£º")
+#ĞÂ½¨excel
 newexcel = xlwt.Workbook()
-tablenew = newexcel.add_sheet("sheet",cell_overwrite_ok=True)
-#è¯»å–æ‰€æœ‰åŸexcel sheet
+tablenew = newexcel.add_sheet("%s"%name,cell_overwrite_ok=True)
+#¶ÁÈ¡ËùÓĞÔ­excel sheet
 excel = xlrd.open_workbook('*.xls')
 table0 = excel.sheets()[0]
 table1 = excel.sheets()[1]
 table2 = excel.sheets()[2]
 table3 = excel.sheets()[3]
 
-#è·å–åŸexcelæ‰€æœ‰sheetè¡Œæ•°
+#»ñÈ¡Ô­excelËùÓĞsheetĞĞÊı
 nrow0 = table0.nrows
 nrow1 = table1.nrows
 nrow2 = table2.nrows
 nrow3 = table3.nrows
 
-#è·å–åŸexcelç¬¬ä¸€ä¸ªsheetåˆ—æ•°
+#»ñÈ¡Ô­excelµÚÒ»¸ösheetÁĞÊı
 ncol0 = table0.ncols
 
-#æ–°è¡¨å¤åˆ¶ç›˜ç‚¹è¡¨æ•°æ®
+#ĞÂ±í¸´ÖÆÅÌµã±íÊı¾İ
 s = 0
 for y in range(0,ncol0):
 	for x in range(0,nrow0):
@@ -38,9 +38,9 @@ for y in range(0,ncol0):
 		s = s + 1
 		#print value0
 	newexcel.save('newxls.xls')
-print("æ–°è¡¨åˆ›å»ºå®Œæˆï¼")
-print("å¼€å§‹å†™å…¥åº“å­˜æ•°æ®ï¼")	
-#è·å–åŸexcelç¬¬ä¸€ä¸ªsheetæ‰€æœ‰ç¼–ç å¹¶ä¸ç¬¬äºŒï¼Œä¸‰ï¼Œå››ä¸ªsheetç¼–ç å¯¹æ¯”ï¼Œå¦‚æœç¼–ç ç›¸åŒåˆ™è·å–è¯¥sheetéœ€è¦çš„å€¼ã€‚æ²¡æœ‰ç›¸åŒçš„åˆ™ä¸º0
+print("ĞÂ±í´´½¨Íê³É£¡")
+print("¿ªÊ¼Ğ´Èë¿â´æÊı¾İ£¡")	
+#»ñÈ¡Ô­excelµÚÒ»¸ösheetËùÓĞ±àÂë²¢ÓëµÚ¶ş£¬Èı£¬ËÄ¸ösheet±àÂë¶Ô±È£¬Èç¹û±àÂëÏàÍ¬Ôò»ñÈ¡¸ÃsheetĞèÒªµÄÖµ¡£Ã»ÓĞÏàÍ¬µÄÔòÎª0
 for i in range(2,nrow0):
 	code0 = str(table0.cell(i,1).value)
 	number1 = str(0)
@@ -62,15 +62,15 @@ for i in range(2,nrow0):
 		if code0 == code3:
 			number3 = int(table3.cell(l,5).value)
 			break
-	#å†™å…¥æ–°è¡¨æ‰€éœ€æ•°æ®å¹¶ä¿å­˜
+	#Ğ´ÈëĞÂ±íËùĞèÊı¾İ²¢±£´æ
 	tablenew.write(i,7,number1)
 	tablenew.write(i,8,number2)
 	tablenew.write(i,9,number3)
 	newexcel.save('newxls.xls')
-	#print("å·²å†™å…¥ï¼š"+str(100*(i+10)/nrow0)+"%")
-	sys.stdout.write("å·²å†™å…¥ï¼š"+str(100*(i+10)/nrow0)+"%"+"\r")
-	#print("æ­£åœ¨å†™å…¥ï¼š"+"äº§å“ç¼–ç ï¼š"+code0+"å¤©åˆåº“å­˜ï¼š"+str(number1)+"æ›œå±…åº“å­˜ï¼š"+str(number2)+"æ®‹æ¬¡åº“å­˜ï¼š"+str(number3))
-print("è·å–æ•°æ®ç»“æŸï¼è¯·æ‰“å¼€newxls.xlsæŸ¥çœ‹è·å–ç»“æœï¼")
+	#print("ÒÑĞ´Èë£º"+str(100*(i+10)/nrow0)+"%")
+	sys.stdout.write("ÒÑĞ´Èë£º"+str(100*(i+10)/nrow0)+"%"+"\r")
+	#print("ÕıÔÚĞ´Èë£º"+"²úÆ·±àÂë£º"+code0+"ÌìºÏ¿â´æ£º"+str(number1)+"ê×¾Ó¿â´æ£º"+str(number2)+"²Ğ´Î¿â´æ£º"+str(number3))
+print("»ñÈ¡Êı¾İ½áÊø£¡Çë´ò¿ªnewxls.xls²é¿´»ñÈ¡½á¹û£¡")
 		
 
 		
